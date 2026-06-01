@@ -18,7 +18,8 @@ section[data-testid="stSidebar"]>div{padding-top:1rem!important;}
 
 /* ── 사이드바 ── */
 section[data-testid="stSidebar"]{background:#1c2623!important;}
-section[data-testid="stSidebar"] *{color:rgba(255,255,255,0.85)!important;}
+section[data-testid="stSidebar"] label,section[data-testid="stSidebar"] span,section[data-testid="stSidebar"] p,section[data-testid="stSidebar"] div:not(input){color:rgba(255,255,255,0.85)!important;}
+section[data-testid="stSidebar"] input{color:#1a1a1a!important;background:#fff!important;}
 section[data-testid="stSidebar"] button{background:transparent!important;border:none!important;
   text-align:left!important;border-radius:8px!important;padding:10px 14px!important;
   font-size:13.5px!important;transition:background .15s!important;color:rgba(255,255,255,.6)!important;}
