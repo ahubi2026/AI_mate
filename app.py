@@ -41,14 +41,7 @@ st.markdown("""<style>
 
 init_db()
 
-# ── 브라우저 자동 열기 (환경변수로 1회만) ──
-if not os.environ.get("AIMATE_OPENED"):
-    os.environ["AIMATE_OPENED"] = "1"
-    import threading, webbrowser
-    def _ob():
-        time.sleep(1.5)
-        webbrowser.open("http://localhost:8501")
-    threading.Thread(target=_ob, daemon=True).start()
+# 브라우저는 .streamlit/config.toml의 headless=false 설정으로 자동 열림
 
 # ── 세션 초기화 ──
 defaults = {
@@ -125,6 +118,51 @@ if st.session_state.view == "title":
                 st.rerun()
         else:
             st.info("로그인 후 시작할 수 있습니다.")
+
+    # ── 관리자 로그인 (타이틀 하단) ──────────────────────────
+    st.markdown("<div style='height:40px'></div>", unsafe_allow_html=True)
+    st.markdown("""
+    <div style="max-width:360px;margin:0 auto;">
+      <div style="text-align:center;margin-bottom:10px;">
+        <span style="font-size:11px;font-weight:700;letter-spacing:.12em;
+                     text-transform:uppercase;color:#9e9e9e;">ADMINISTRATOR ACCESS</span>
+      </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    _, ac, _ = st.columns([2, 1, 2])
+    with ac:
+        if st.session_state.admin_logged:
+            st.markdown(
+                '<div style="text-align:center;padding:8px 0;">'
+                '<span style="background:#5a3d8a;color:white;padding:6px 16px;'
+                'border-radius:999px;font-size:12px;font-weight:600;">🛡️ 관리자 모드 활성화</span>'
+                '</div>', unsafe_allow_html=True)
+            col_adm, col_go = st.columns(2)
+            with col_adm:
+                if st.button("대시보드 →", key="title_admin_dash",
+                             use_container_width=True, type="primary"):
+                    st.session_state.view = "admin"
+                    st.rerun()
+            with col_go:
+                if st.button("로그아웃", key="title_admin_logout", use_container_width=True):
+                    st.session_state.admin_logged = False
+                    st.rerun()
+        else:
+            with st.expander("🔑 관리자 로그인", expanded=False):
+                adm_id = st.text_input("관리자 ID", key="title_aid", placeholder="admin",
+                                        label_visibility="visible")
+                adm_pw = st.text_input("관리자 PW", key="title_apw", type="password",
+                                        placeholder="비밀번호", label_visibility="visible")
+                if st.button("관리자 접속", key="title_admin_login",
+                             use_container_width=True):
+                    if adm_id == ADMIN_ID and adm_pw == ADMIN_PWD:
+                        st.session_state.admin_logged = True
+                        st.session_state.view = "admin"
+                        st.rerun()
+                    else:
+                        st.error("관리자 인증 실패")
+
     st.stop()
 
 
@@ -193,32 +231,16 @@ with st.sidebar:
       <div><div class="brand-title">AI MATE</div>
       <div class="brand-sub">Self-Leadership Platform</div></div></div>""", unsafe_allow_html=True)
 
-    # 관리자 로그인
+    # 관리자 대시보드 버튼 (로그인된 경우에만 표시)
     st.markdown('<div class="nav-divider"></div>', unsafe_allow_html=True)
-    with st.expander("🔑 관리자 로그인", expanded=st.session_state.admin_logged):
-        if st.session_state.admin_logged:
-            st.success("관리자 모드 활성화")
-            if st.button("관리자 로그아웃", key="admin_lo"):
-                st.session_state.admin_logged = False
-                st.session_state.view = "title"
-                st.rerun()
-        else:
-            aid = st.text_input("관리자 ID", key="aid", placeholder="admin")
-            apw = st.text_input("관리자 PW", type="password", key="apw", placeholder="비밀번호")
-            if st.button("관리자 접속", key="admin_login"):
-                if aid == ADMIN_ID and apw == ADMIN_PWD:
-                    st.session_state.admin_logged = True
-                    st.session_state.view = "admin"
-                    st.rerun()
-                else:
-                    st.error("관리자 인증 실패")
-
-    st.markdown('<div class="nav-divider"></div>', unsafe_allow_html=True)
-
     if st.session_state.admin_logged:
         if st.button("📊 관리자 대시보드", key="nav_admin", use_container_width=True,
                      type="primary" if st.session_state.view == "admin" else "secondary"):
             st.session_state.view = "admin"
+            st.rerun()
+        if st.button("관리자 로그아웃", key="admin_lo", use_container_width=True):
+            st.session_state.admin_logged = False
+            st.session_state.view = "title"
             st.rerun()
 
     if user:
