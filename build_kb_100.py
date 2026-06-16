@@ -1,13 +1,6 @@
-# build_kb.py — AI MATE 코칭 지식베이스 구축 (200개 버전)
+# build_kb.py — AI MATE 코칭 지식베이스 구축 (100개 버전)
 # 사용법: python build_kb.py
-# 결과: ./chroma_db/ 폴더에 200개 코칭 지식 벡터DB 생성
-#
-# ※ 추가 확장 방법:
-#   아래 KNOWLEDGE 리스트의 마지막 ] 앞에 같은 형식으로 항목을 추가하세요.
-#   ID 규칙: 요인_카테고리_번호  (예: car_01 처럼 고민분야는 직접 추가 가능)
-#   요인: behavior / natural / thought
-#   카테고리: coaching_principle / research / technique / women_context
-#            / role_model / example / reflection_guide
+# 결과: ./chroma_db/ 폴더에 100개 코칭 지식 벡터DB 생성
 
 import os
 import chromadb
@@ -31,7 +24,6 @@ def get_embedding_fn():
 
 
 KNOWLEDGE = [
-
 # ══════════════════════════════════════════════════════════
 # 행동중심전략 (behavior) — 33개
 # ══════════════════════════════════════════════════════════
@@ -264,140 +256,12 @@ KNOWLEDGE = [
  "text":"3T 성찰의 Transform 단계(건설적 사고): 내일 같은 상황에서 쓸 긍정적 자기대화 문장을 미리 준비한다. '다음엔 이렇게 말하겠다'로 마무리한다."},
 {"id":"tho_pr_05","factor":"thought","category":"coaching_principle",
  "text":"건설적 사고의 최종 목표는 자기 신뢰의 회복이다. 부정적 사고를 통제하는 것을 넘어, 어떤 상황에서도 나는 해결 방법을 찾을 수 있다는 근본적 자기 신뢰를 세우는 것이 코칭의 지향점이다."},
-
-# ═══════════════════ 추가 100개 (101~200) ═══════════════════
-# ══════════ 행동중심전략 추가 ══════════
-# 코칭 원칙(3)
-{"id":"beh_pr_05","factor":"behavior","category":"coaching_principle","text":"행동의 지속은 동기가 아니라 시스템에서 나온다. 의지력에 의존하기보다 자동으로 행동이 일어나는 루틴과 환경을 설계하도록 돕는 것이 코칭의 핵심이다."},
-{"id":"beh_pr_06","factor":"behavior","category":"coaching_principle","text":"실패는 계획의 정보이지 능력의 증거가 아니다. 계획대로 되지 않았을 때 자책 대신 '무엇이 빠졌는가'를 점검하여 계획을 수정하도록 안내한다."},
-{"id":"beh_pr_07","factor":"behavior","category":"coaching_principle","text":"진척의 가시화가 동기를 만든다. 완료한 일을 눈으로 확인할 수 있게 하면 다음 행동의 추진력이 생긴다. 작은 진전도 기록하고 축하하도록 돕는다."},
-# 연구(6)
-{"id":"beh_rs_06","factor":"behavior","category":"research","text":"작은 습관 연구(Fogg, 2019)는 행동을 아주 작게 만들고 기존 습관에 붙이면 정착률이 높아짐을 보였다. '양치 후 스쿼트 1개'처럼 기존 루틴에 닻을 내리는 방식이 효과적이다."},
-{"id":"beh_rs_07","factor":"behavior","category":"research","text":"자기조절 연구(Baumeister, 2011)는 의지력이 한정된 자원이며 소진된다는 점을 밝혔다. 중요한 행동은 의지력이 충만한 하루 초반에 배치하는 것이 유리하다."},
-{"id":"beh_rs_08","factor":"behavior","category":"research","text":"피드백 루프 연구는 행동-결과의 즉각적 피드백이 행동 수정 속도를 높임을 보인다. 행동의 결과를 빠르게 확인할 수 있는 구조가 학습을 가속한다."},
-{"id":"beh_rs_09","factor":"behavior","category":"research","text":"WOOP 기법 연구(Oettingen, 2014)는 소망-결과-장애물-계획의 4단계가 목표 달성률을 높임을 실증했다. 긍정적 상상에 장애물 대비를 더하면 실행력이 강화된다."},
-{"id":"beh_rs_10","factor":"behavior","category":"research","text":"공개 선언 효과(commitment) 연구는 목표를 타인에게 공개하면 실행 책임감이 높아짐을 보인다. 신뢰하는 사람에게 계획을 알리는 것이 실행을 촉진한다."},
-{"id":"beh_rs_11","factor":"behavior","category":"research","text":"성취 동기 연구(McClelland)는 적당한 난이도의 목표가 가장 높은 동기를 유발함을 밝혔다. 너무 쉽거나 어려운 목표보다 약간의 도전이 있는 목표가 실행을 이끈다."},
-# 기법(9)
-{"id":"beh_tc_09","factor":"behavior","category":"technique","text":"습관 쌓기(habit stacking): '나는 [기존 습관] 후에 [새 습관]을 하겠다' 형식으로 새 행동을 기존 루틴에 연결한다. 이미 정착된 습관이 새 행동의 방아쇠가 된다."},
-{"id":"beh_tc_10","factor":"behavior","category":"technique","text":"시간 블로킹: 하루를 시간 단위로 나누고 각 블록에 할 일을 미리 배정한다. '언제 할까'를 고민하는 에너지를 절약하고 실행에 집중한다."},
-{"id":"beh_tc_11","factor":"behavior","category":"technique","text":"if-then 계획: '만약 X 상황이 오면 Y를 하겠다'로 미리 대응을 정한다. 예상되는 방해 상황에 대한 대응을 준비하면 실행이 흔들리지 않는다."},
-{"id":"beh_tc_12","factor":"behavior","category":"technique","text":"최소 실행 단위: 컨디션이 나쁜 날을 위한 '최소 버전'을 정해둔다. '운동 30분'이 어려운 날엔 '스트레칭 5분'으로라도 연속성을 지킨다."},
-{"id":"beh_tc_13","factor":"behavior","category":"technique","text":"역산 계획: 마감일에서 거꾸로 계산해 중간 목표를 설정한다. 최종 목표를 시간 단위로 분해하면 오늘 할 일이 명확해진다."},
-{"id":"beh_tc_14","factor":"behavior","category":"technique","text":"두 개의 목록: '할 일'과 '하지 않을 일'을 함께 적는다. 무엇을 멈출지 정하는 것이 무엇을 할지 정하는 것만큼 실행에 중요하다."},
-{"id":"beh_tc_15","factor":"behavior","category":"technique","text":"실행 파트너: 함께 목표를 점검할 동료를 정한다. 정기적으로 진척을 공유하면 책임감이 생겨 실행이 지속된다."},
-{"id":"beh_tc_16","factor":"behavior","category":"technique","text":"유혹 묶기(temptation bundling): 하기 싫은 일과 좋아하는 활동을 묶는다. '좋아하는 드라마는 운동할 때만 본다'처럼 결합하면 실행이 쉬워진다."},
-{"id":"beh_tc_17","factor":"behavior","category":"technique","text":"하루 마무리 3줄: 매일 끝에 '완료한 일, 미룬 일, 내일 1순위'를 세 줄로 적는다. 짧은 점검이 다음 날 실행의 출발점이 된다."},
-# 여성맥락(3)
-{"id":"beh_wm_05","factor":"behavior","category":"women_context","text":"여성은 가사·육아의 보이지 않는 노동으로 자기 시간이 파편화된다. 짧은 자투리 시간(10분)을 자기 목표에 쓰는 마이크로 실행이 현실적 전략이 된다."},
-{"id":"beh_wm_06","factor":"behavior","category":"women_context","text":"여성에게 '도움 요청'은 약점이 아니라 실행 전략이다. 가사 분담이나 협력을 요청하여 자기 목표를 위한 시간을 확보하는 것도 행동중심전략의 일부이다."},
-{"id":"beh_wm_07","factor":"behavior","category":"women_context","text":"경력 전환기의 여성은 방향 설정에 압도되기 쉽다. 큰 결정을 미루기보다 '정보 수집 30분'처럼 탐색의 첫 행동을 작게 시작하는 것이 길을 연다."},
-# 롤모델(2)
-{"id":"beh_rm_05","factor":"behavior","category":"role_model","text":"마리 퀴리는 자원이 부족한 환경에서도 가용한 것으로 즉시 실험을 시작했다. 완벽한 조건을 기다리지 않고 지금 있는 것으로 첫 행동을 한 점이 본받을 지점이다."},
-{"id":"beh_rm_06","factor":"behavior","category":"role_model","text":"벤자민 프랭클린은 매일 아침 '오늘 무슨 좋은 일을 할까', 저녁엔 '오늘 무슨 좋은 일을 했나'를 물었다. 하루를 질문으로 열고 닫는 점검 습관이 핵심이다."},
-# 사례(7)
-{"id":"beh_ex_06","factor":"behavior","category":"example","text":"실천 사례: 아침에 일어나자마자 이불을 정리한다. 하루의 첫 작은 완수가 연쇄적 실행의 흐름을 만든다."},
-{"id":"beh_ex_07","factor":"behavior","category":"example","text":"실천 사례: 큰 보고서는 '폴더 만들기'부터 시작한다. 가장 사소한 첫 단계가 시작의 저항을 무너뜨린다."},
-{"id":"beh_ex_08","factor":"behavior","category":"example","text":"실천 사례: 운동을 '주 3회'가 아니라 '월·수·금 저녁 8시'로 못박는다. 구체적 시간 지정이 실행 확률을 높인다."},
-{"id":"beh_ex_09","factor":"behavior","category":"example","text":"실천 사례: 책상에 휴대폰을 두지 않고 다른 방에 둔다. 방해 요소를 물리적으로 멀리 두면 집중 실행이 쉬워진다."},
-{"id":"beh_ex_10","factor":"behavior","category":"example","text":"실천 사례: 매주 일요일 저녁 10분간 다음 주 일정을 미리 짠다. 주간 계획 습관이 한 주의 실행을 안정시킨다."},
-{"id":"beh_ex_11","factor":"behavior","category":"example","text":"실천 사례: 미룬 일을 '딱 5분만' 하기로 한다. 5분 후 멈춰도 되지만 대개 흐름을 타고 계속하게 된다."},
-{"id":"beh_ex_12","factor":"behavior","category":"example","text":"실천 사례: 완료한 일을 앱이나 노트에 체크한다. 쌓이는 체크 표시가 시각적 성취감과 지속 동기를 준다."},
-# 3T(3)
-{"id":"beh_3t_04","factor":"behavior","category":"reflection_guide","text":"3T 행동중심 심화-Task: 오늘 계획한 것과 실제 한 것의 차이를 기록한다. 계획과 실행의 간극을 보는 것이 다음 계획의 정확도를 높인다."},
-{"id":"beh_3t_05","factor":"behavior","category":"reflection_guide","text":"3T 행동중심 심화-Trigger: 실행이 잘된 날과 안된 날의 차이를 비교한다. 나의 실행을 돕는 조건을 발견하면 그것을 의도적으로 재현할 수 있다."},
-{"id":"beh_3t_06","factor":"behavior","category":"reflection_guide","text":"3T 행동중심 심화-Transform: 이번 주 가장 효과적이었던 실행 방법 하나를 다음 주에도 적용하기로 정한다. 효과적 패턴의 반복이 습관을 만든다."},
-
-# ══════════ 자연적 보상전략 추가 ══════════
-# 코칭 원칙(3)
-{"id":"nat_pr_05","factor":"natural","category":"coaching_principle","text":"의미는 거창한 데서 오지 않는다. 일상의 작은 순간에서 의미를 발견하는 훈련이 지속적 내적 동기의 기반이 된다. 코치는 작은 의미의 포착을 돕는다."},
-{"id":"nat_pr_06","factor":"natural","category":"coaching_principle","text":"흥미는 발견하는 것이 아니라 키우는 것이다. 처음엔 지루해도 깊이 파고들면 흥미가 생긴다는 점을 알려주어 인내의 시간을 견디도록 돕는다."},
-{"id":"nat_pr_07","factor":"natural","category":"coaching_principle","text":"비교는 내적 동기의 가장 큰 적이다. 타인과의 비교 대신 과거의 자신과 비교하도록 방향을 돌리면 성장의 즐거움이 회복된다."},
-# 연구(6)
-{"id":"nat_rs_06","factor":"natural","category":"research","text":"과잉정당화 효과(Lepper, 1973) 연구는 외적 보상이 오히려 내적 동기를 약화시킬 수 있음을 보였다. 좋아하던 일도 의무가 되면 흥미를 잃으므로 내적 의미를 지키는 것이 중요하다."},
-{"id":"nat_rs_07","factor":"natural","category":"research","text":"목적의식 연구(Steger, 2012)는 일에서 목적을 느끼는 사람이 더 높은 웰빙과 지속성을 보임을 밝혔다. 자신의 일을 더 큰 의미와 연결하는 것이 동기의 원천이다."},
-{"id":"nat_rs_08","factor":"natural","category":"research","text":"긍정정서 확장-구축 이론(Fredrickson, 2001)은 긍정 정서가 사고와 행동의 레퍼토리를 넓힘을 보인다. 일에서 작은 즐거움을 느끼면 창의성과 회복력도 함께 자란다."},
-{"id":"nat_rs_09","factor":"natural","category":"research","text":"음미하기(savoring) 연구는 긍정 경험을 의식적으로 즐기고 음미하면 그 효과가 증폭됨을 밝혔다. 좋은 순간을 빨리 지나치지 않고 머무는 연습이 내적 보상을 키운다."},
-{"id":"nat_rs_10","factor":"natural","category":"research","text":"자율성 지지 연구는 선택권이 주어질 때 동기와 만족이 높아짐을 보인다. 작은 부분이라도 스스로 결정할 여지를 만들면 일에 대한 주인의식이 생긴다."},
-{"id":"nat_rs_11","factor":"natural","category":"research","text":"강점 활용 연구(Seligman)는 자신의 대표 강점을 새로운 방식으로 쓸 때 행복과 몰입이 높아짐을 밝혔다. 강점이 발휘되는 순간이 자연적 보상의 핵심이다."},
-# 기법(9)
-{"id":"nat_tc_09","factor":"natural","category":"technique","text":"의미 재구성: '이 일을 왜 하는가'를 세 단계 더 깊이 묻는다. 표면적 이유에서 출발해 더 깊은 가치에 도달하면 동기가 살아난다."},
-{"id":"nat_tc_10","factor":"natural","category":"technique","text":"강점 일지: 하루 중 자신의 강점을 발휘한 순간을 기록한다. 강점이 쓰인 순간을 알아차리면 그 활동에 대한 애정이 커진다."},
-{"id":"nat_tc_11","factor":"natural","category":"technique","text":"음미 산책: 일과 중 5분 산책하며 좋았던 순간을 떠올린다. 긍정 경험을 의식적으로 되새기면 그 가치가 증폭된다."},
-{"id":"nat_tc_12","factor":"natural","category":"technique","text":"호기심 노트: 일하며 떠오른 궁금증을 메모한다. 질문이 쌓이면 의무적이던 일이 탐구의 대상으로 바뀐다."},
-{"id":"nat_tc_13","factor":"natural","category":"technique","text":"기여 인식: 내 일이 누구에게 어떤 도움이 되는지 구체적으로 떠올린다. 수혜자의 얼굴을 그리면 일의 의미가 생생해진다."},
-{"id":"nat_tc_14","factor":"natural","category":"technique","text":"몰입 조건 만들기: 방해 없이 집중할 수 있는 시간과 공간을 확보한다. 몰입은 깊은 즐거움과 내적 보상의 통로이다."},
-{"id":"nat_tc_15","factor":"natural","category":"technique","text":"작은 실험: 일하는 방식을 조금 바꿔본다. 같은 일도 새로운 방법으로 시도하면 지루함이 호기심으로 바뀐다."},
-{"id":"nat_tc_16","factor":"natural","category":"technique","text":"좋아하는 것 통합: 일에 자신이 좋아하는 요소(음악, 미적 정리, 색깔)를 더한다. 취향을 반영하면 일이 자기표현이 된다."},
-{"id":"nat_tc_17","factor":"natural","category":"technique","text":"성장 기록: 이 일을 통해 늘어난 능력을 주기적으로 정리한다. 성장의 증거가 보이면 일이 발전의 무대로 느껴진다."},
-# 여성맥락(3)
-{"id":"nat_wm_05","factor":"natural","category":"women_context","text":"여성은 자신의 욕구를 후순위로 두는 데 익숙해 무엇을 좋아하는지조차 잊는다. '내가 진짜 원하는 것'을 작은 것부터 다시 묻는 연습이 내적 동기 회복의 시작이다."},
-{"id":"nat_wm_06","factor":"natural","category":"women_context","text":"육아·돌봄의 반복 속에서 여성은 성취감을 느끼기 어렵다. 보이지 않는 돌봄 노동의 가치를 스스로 인정하고 의미화하는 것이 자연적 보상을 회복시킨다."},
-{"id":"nat_wm_07","factor":"natural","category":"women_context","text":"여성에게 '나를 위한 즐거움'은 죄책감을 동반하기 쉽다. 즐거움이 이기심이 아니라 재충전임을 인식하면 자기돌봄이 자연스러워진다."},
-# 롤모델(2)
-{"id":"nat_rm_05","factor":"natural","category":"role_model","text":"프리다 칼로는 침대에 누워서도 천장에 거울을 달아 자화상을 그렸다. 주어진 제약 안에서 자기표현의 방법을 찾아낸 창의적 의미화가 본받을 지점이다."},
-{"id":"nat_rm_06","factor":"natural","category":"role_model","text":"리처드 파인만은 식당 접시가 도는 것을 보고 재미로 회전을 연구하다 노벨상 연구로 이어갔다. 순수한 호기심과 놀이가 위대한 성취의 출발이 됨을 보여준다."},
-# 사례(7)
-{"id":"nat_ex_06","factor":"natural","category":"example","text":"실천 사례: 설거지를 하며 좋아하는 음악을 크게 튼다. 단조로운 일에 즐거운 감각을 더하면 시간이 다르게 흐른다."},
-{"id":"nat_ex_07","factor":"natural","category":"example","text":"실천 사례: 회의록을 쓸 때 '내가 핵심을 요약하는 능력을 기른다'고 의미를 부여한다. 관점의 전환이 지루함을 성장으로 바꾼다."},
-{"id":"nat_ex_08","factor":"natural","category":"example","text":"실천 사례: 매일 퇴근 전 '오늘 가장 의미 있었던 일' 한 가지를 적는다. 의미를 찾는 시선이 길러진다."},
-{"id":"nat_ex_09","factor":"natural","category":"example","text":"실천 사례: 반복 업무를 '얼마나 효율적으로 할 수 있나' 게임으로 만든다. 스스로 만든 도전이 몰입을 부른다."},
-{"id":"nat_ex_10","factor":"natural","category":"example","text":"실천 사례: 좋아하는 차를 마시며 업무를 시작한다. 일과에 작은 즐거움의 의식을 더하면 시작이 가벼워진다."},
-{"id":"nat_ex_11","factor":"natural","category":"example","text":"실천 사례: 일의 결과물을 받는 사람의 반응을 상상한다. 기여의 대상을 떠올리면 일의 의미가 구체화된다."},
-{"id":"nat_ex_12","factor":"natural","category":"example","text":"실천 사례: 한 주에 한 번 순수하게 좋아하는 활동에 시간을 낸다. 의무가 아닌 즐거움의 시간이 내적 에너지를 채운다."},
-# 3T(3)
-{"id":"nat_3t_04","factor":"natural","category":"reflection_guide","text":"3T 자연보상 심화-Task: 오늘 한 일 중 '시간 가는 줄 몰랐던' 순간을 찾아 기록한다. 몰입의 순간이 나의 흥미가 있는 곳을 알려준다."},
-{"id":"nat_3t_05","factor":"natural","category":"reflection_guide","text":"3T 자연보상 심화-Trigger: 그 몰입을 가능하게 한 조건을 분석한다. 무엇이 나를 빠져들게 했는지 알면 그 조건을 의도적으로 만들 수 있다."},
-{"id":"nat_3t_06","factor":"natural","category":"reflection_guide","text":"3T 자연보상 심화-Transform: 내일 일에 나의 강점이나 흥미를 더할 한 가지 방법을 정한다. 의미는 발견되기도 하지만 적극적으로 만들어지기도 한다."},
-
-# ══════════ 건설적 사고패턴 추가 ══════════
-# 코칭 원칙(3)
-{"id":"tho_pr_06","factor":"thought","category":"coaching_principle","text":"감정은 억누르는 것이 아니라 다루는 것이다. 부정적 감정을 부정하기보다 인정하고 그 안의 메시지를 읽도록 돕는 것이 건설적 사고의 출발이다."},
-{"id":"tho_pr_07","factor":"thought","category":"coaching_principle","text":"생각의 내용보다 생각과의 관계가 중요하다. 부정적 생각을 없애려 애쓰기보다, 그것을 '하나의 생각일 뿐'으로 바라보는 거리두기가 자유를 준다."},
-{"id":"tho_pr_08","factor":"thought","category":"coaching_principle","text":"자기 가치는 성과에 좌우되지 않는다. 실패해도 나의 본질적 가치는 변하지 않는다는 믿음이 도전과 회복의 안전기지가 된다."},
-# 연구(6)
-{"id":"tho_rs_06","factor":"thought","category":"research","text":"수용전념치료(ACT) 연구는 부정적 생각을 없애려 하기보다 수용하고 가치 있는 행동에 전념할 때 심리적 유연성이 높아짐을 보인다. 생각과 싸우지 않는 것이 핵심이다."},
-{"id":"tho_rs_07","factor":"thought","category":"research","text":"낙관성 연구(Seligman)는 설명양식이 학습됨을 보였다. 나쁜 일을 일시적·특정적·외부적으로 설명하는 연습이 낙관성과 회복력을 키운다."},
-{"id":"tho_rs_08","factor":"thought","category":"research","text":"마음챙김 연구(Kabat-Zinn)는 현재 순간에 판단 없이 주의를 기울이면 반추적 사고가 줄어듦을 밝혔다. 생각의 소용돌이에서 빠져나오는 훈련이 된다."},
-{"id":"tho_rs_09","factor":"thought","category":"research","text":"심리적 자본 연구(Luthans, 2007)는 희망·효능감·회복력·낙관의 네 요소가 성과와 웰빙을 예측함을 보였다. 이 네 가지는 모두 훈련으로 키울 수 있는 자원이다."},
-{"id":"tho_rs_10","factor":"thought","category":"research","text":"자기거리두기 연구(Kross, 2014)는 자신을 3인칭으로 지칭하면 감정 조절이 향상됨을 실증했다. '나는'이 아닌 이름으로 자신을 부르면 더 차분하고 지혜로워진다."},
-{"id":"tho_rs_11","factor":"thought","category":"research","text":"감사 연구(Emmons, 2003)는 감사를 표현하는 사람이 더 높은 행복과 낙관, 회복력을 보임을 밝혔다. 감사는 부정 편향에 기운 주의를 긍정으로 돌리는 강력한 도구이다."},
-# 기법(9)
-{"id":"tho_tc_09","factor":"thought","category":"technique","text":"생각 기록표: 상황-자동적 사고-감정-대안적 사고를 표로 적는다. 부정적 자동 사고를 종이에 꺼내면 그것을 검토하고 수정할 수 있다."},
-{"id":"tho_tc_10","factor":"thought","category":"technique","text":"최악-최선-현실 시나리오: 걱정되는 일의 최악, 최선, 가장 현실적인 결과를 각각 적는다. 대개 현실은 최악과 거리가 멀다는 것을 확인한다."},
-{"id":"tho_tc_11","factor":"thought","category":"technique","text":"인지 왜곡 찾기: 흑백논리, 과잉일반화, 파국화 등 자신의 사고 함정을 식별한다. 왜곡의 이름을 알면 그 패턴에서 빠져나오기 쉽다."},
-{"id":"tho_tc_12","factor":"thought","category":"technique","text":"감사 3가지: 매일 감사한 일 세 가지를 적는다. 작은 것이라도 좋다. 감사 연습이 긍정적 사고 회로를 강화한다."},
-{"id":"tho_tc_13","factor":"thought","category":"technique","text":"친구 관점: '내 친구가 이 상황이라면 뭐라고 말해줄까'를 묻는다. 자신에게는 가혹하지만 친구에게는 따뜻한 그 말을 자신에게도 건넨다."},
-{"id":"tho_tc_14","factor":"thought","category":"technique","text":"성취 목록: 자신이 이뤄온 것들을 적어 보관한다. 자신감이 흔들릴 때 이 목록을 보면 근거 있는 자기확신이 회복된다."},
-{"id":"tho_tc_15","factor":"thought","category":"technique","text":"호흡 멈춤: 부정적 생각이 격해질 때 3회 깊은 호흡을 한다. 잠시 멈추는 것만으로 자동 반응에서 벗어나 선택의 여지가 생긴다."},
-{"id":"tho_tc_16","factor":"thought","category":"technique","text":"긍정 닻 문장: 힘들 때 떠올릴 자신만의 짧은 문장을 정해둔다. '이 또한 지나간다'처럼 검증된 문장이 위기의 순간 중심을 잡아준다."},
-{"id":"tho_tc_17","factor":"thought","category":"technique","text":"미래 자기 편지: 1년 후의 내가 지금의 나에게 보내는 편지를 쓴다. 시간 거리를 두면 현재의 고민이 더 작고 통과 가능한 것으로 보인다."},
-# 여성맥락(3)
-{"id":"tho_wm_05","factor":"thought","category":"women_context","text":"여성은 '착해야 한다'는 사회적 기대로 자기 주장을 억누르며 내적 갈등을 겪는다. 정당한 자기 주장이 이기적인 것이 아님을 인식하는 인지 전환이 필요하다."},
-{"id":"tho_wm_06","factor":"thought","category":"women_context","text":"여성은 외모·나이에 대한 사회적 시선을 내면화해 자기비판으로 삼기 쉽다. 외부 기준이 아닌 자신의 가치와 능력에 주의를 돌리는 연습이 건설적 사고를 키운다."},
-{"id":"tho_wm_07","factor":"thought","category":"women_context","text":"여성은 여러 역할의 완벽한 수행을 자신에게 요구하며 죄책감에 시달린다. '모든 것을 완벽히 할 수는 없다'는 현실을 수용하는 것이 자기연민의 시작이다."},
-# 롤모델(2)
-{"id":"tho_rm_05","factor":"thought","category":"role_model","text":"넬슨 만델라는 출소하며 '감옥을 나서는 순간 원망을 두고 가지 않으면 나는 여전히 갇혀 있는 것'이라 말했다. 원망을 내려놓는 재해석이 진정한 자유를 줌을 보여준다."},
-{"id":"tho_rm_06","factor":"thought","category":"role_model","text":"루스 베이더 긴즈버그는 거절의 순간마다 그것을 다음 도전의 발판으로 삼았다. 좌절을 끝이 아닌 과정으로 재해석하는 태도가 건설적 사고의 본보기이다."},
-# 사례(6)
-{"id":"tho_ex_06","factor":"thought","category":"example","text":"실천 사례: 비판을 받았을 때 '이 중 내가 배울 1%는 무엇일까'를 찾는다. 방어 대신 학습의 태도가 성장을 만든다."},
-{"id":"tho_ex_07","factor":"thought","category":"example","text":"실천 사례: 불안할 때 '지금 내가 통제할 수 있는 한 가지'를 찾아 행동한다. 작은 통제감이 불안을 줄인다."},
-{"id":"tho_ex_08","factor":"thought","category":"example","text":"실천 사례: '나는 부족해'라는 생각이 들면 '아직 배우는 중이야'로 바꿔 말한다. 단어 하나를 바꾸면 마음의 여지가 생긴다."},
-{"id":"tho_ex_09","factor":"thought","category":"example","text":"실천 사례: 잠들기 전 오늘의 걱정을 노트에 적어 '내일 생각할 것'으로 미룬다. 걱정을 종이에 맡기면 마음이 가벼워진다."},
-{"id":"tho_ex_10","factor":"thought","category":"example","text":"실천 사례: 중요한 일 전에 과거 비슷한 상황을 잘 넘긴 기억을 떠올린다. 성공 경험의 회상이 자신감을 끌어올린다."},
-{"id":"tho_ex_11","factor":"thought","category":"example","text":"실천 사례: 부정적 혼잣말을 알아차리면 '잠깐'이라고 속으로 말하고 멈춘다. 자동 사고에 제동을 거는 것만으로 패턴이 바뀐다."},
-# 3T(3)
-{"id":"tho_3t_04","factor":"thought","category":"reflection_guide","text":"3T 건설적사고 심화-Task: 오늘 가장 감정이 흔들린 순간과 그때의 생각을 기록한다. 감정과 생각의 연결을 보는 것이 변화의 출발점이다."},
-{"id":"tho_3t_05","factor":"thought","category":"reflection_guide","text":"3T 건설적사고 심화-Trigger: 그 생각이 사실인지, 다른 해석은 없는지 검토한다. 생각을 사실이 아닌 가설로 다루면 유연성이 생긴다."},
-{"id":"tho_3t_06","factor":"thought","category":"reflection_guide","text":"3T 건설적사고 심화-Transform: 같은 상황에서 쓸 새로운 자기대화 문장을 만든다. 미리 준비한 건설적 문장이 다음 위기에서 자동으로 떠오른다."},
-{"id":"beh_rs_12","factor":"behavior","category":"research","text":"실행의도-목표달성 메타분석(Gollwitzer & Sheeran, 2006)은 94개 연구를 종합해 실행의도가 목표 달성에 중간에서 큰 효과크기를 보임을 확인했다. 구체적 계획이 의도와 행동의 간극을 메운다."},
-{"id":"tho_tc_18","factor":"thought","category":"technique","text":"관점 전환 질문: '10년 후의 내가 보면 이 일이 얼마나 중요할까'를 묻는다. 시간의 망원경으로 보면 현재의 고민이 적절한 크기로 재조정된다."}
 ]
 
 
 def build():
     print("\n" + "="*55)
-    print("  AI MATE 코칭 지식베이스 구축 (200개)")
+    print("  AI MATE 코칭 지식베이스 구축 (100개)")
     print("="*55)
     client = chromadb.PersistentClient(path=DB_DIR)
     try:
@@ -420,17 +284,10 @@ def build():
 
     from collections import Counter
     fc = Counter(k["factor"] for k in KNOWLEDGE)
-    labels = {"behavior":"행동중심", "natural":"자연적보상", "thought":"건설적사고"}
     print(f"\n  요인별 분포:")
+    labels = {"behavior":"행동중심", "natural":"자연적보상", "thought":"건설적사고"}
     for f, n in fc.items():
         print(f"    {labels.get(f,f)}: {n}개")
-    cc = Counter(k["category"] for k in KNOWLEDGE)
-    print(f"\n  카테고리별 분포:")
-    cat_labels = {"coaching_principle":"코칭원칙","research":"연구근거","technique":"코칭기법",
-                  "women_context":"여성맥락","role_model":"롤모델","example":"실천사례",
-                  "reflection_guide":"3T가이드"}
-    for c, n in cc.items():
-        print(f"    {cat_labels.get(c,c)}: {n}개")
 
     print("\n" + "-"*55)
     print("  🔍 검색 테스트")
@@ -441,13 +298,13 @@ def build():
         ("실패하면 자책이 심해요", "thought"),
     ]
     for query, factor in tests:
-        r = collection.query(query_texts=[query], n_results=3, where={"factor": factor})
+        r = collection.query(query_texts=[query], n_results=2, where={"factor": factor})
         print(f"\n  질문: '{query}'")
         for i, doc in enumerate(r["documents"][0]):
-            print(f"  결과 {i+1}: {doc[:50]}…")
+            print(f"  결과 {i+1}: {doc[:55]}…")
 
     print("\n" + "="*55)
-    print("  ✅ 200개 지식베이스 구축 완료!")
+    print("  ✅ 100개 지식베이스 구축 완료!")
     print("="*55 + "\n")
 
 
